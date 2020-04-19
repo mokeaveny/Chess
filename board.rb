@@ -1,5 +1,8 @@
 require_relative "./pawn.rb"
 require_relative "./queen.rb"
+require_relative "./king.rb"
+require_relative "./knight.rb"
+require_relative "./rook.rb"
 require_relative "./bishop.rb"
 
 class Board
@@ -8,8 +11,9 @@ class Board
 		
 		blank = Blank.new # Create a blank object. This displays a blank space and has no colour.
 
-		@board = {:a8 => blank, :b8 => Bishop.new("b8", "W"), :c8 => blank, :d8 => Queen.new("d8", "W"), :e8 => blank, :f8 => blank,
-						  :g8 => Bishop.new("g8", "W"), :h8 => blank,
+		@board = {:a8 => Rook.new("a8", "W"), :b8 => Bishop.new("b8", "W"), :c8 => Knight.new("c8", "W"), 
+							:d8 => Queen.new("d8", "W"), :e8 => King.new("e8", "W"), :f8 => Knight.new("f8", "W"),
+						  :g8 => Bishop.new("g8", "W"), :h8 => Rook.new("h8", "W"),
 							
 							:a7 => Pawn.new("a7", "W"),:b7 => Pawn.new("b7", "W"), :c7 => Pawn.new("c7", "W"),
 							:d7 => Pawn.new("d7", "W"), :e7 => Pawn.new("e7", "W"), :f7 => Pawn.new("f7", "W"),
@@ -31,8 +35,9 @@ class Board
 							:d2 => Pawn.new("d2", "B"), :e2 => Pawn.new("e2", "B"), :f2 => Pawn.new("f2", "B"),
 						  :g2 => Pawn.new("g2", "B"), :h2 => Pawn.new("h2", "B"),						
 
-							:a1 => blank, :b1 => Bishop.new("b1", "B"), :c1 => blank, :d1 => Queen.new("d1", "B"), :e1 => blank, :f1 => blank,
-						  :g1 => Bishop.new("g1", "B"), :h1 => blank,
+							:a1 => Rook.new("a1", "B"), :b1 => Bishop.new("b1", "B"), :c1 => Knight.new("c1", "B"),
+							:d1 => Queen.new("d1", "B"), :e1 => King.new("e1", "B"), :f1 => Knight.new("f1", "B"),
+						  :g1 => Bishop.new("g1", "B"), :h1 => Rook.new("h1", "B"),
 						}			
 
 	end
