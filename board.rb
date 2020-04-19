@@ -28,7 +28,7 @@ class Board
 							:a4 => blank, :b4 => blank, :c4 => blank, :d4 => blank, :e4 => blank, :f4 => blank,
 						  :g4 => blank, :h4 => blank,
 
-							:a3 => blank, :b3 => blank, :c3 => blank, :d3 => blank, :e3 => blank, :f3 => blank,
+							:a3 => Rook.new("a3", "W"), :b3 => blank, :c3 => Knight.new("c3", "W"), :d3 => blank, :e3 => blank, :f3 => blank,
 						  :g3 => blank, :h3 => blank,
 
 							:a2 => Pawn.new("a2", "B"), :b2 => Pawn.new("b2", "B"), :c2 => Pawn.new("c2", "B"), 
