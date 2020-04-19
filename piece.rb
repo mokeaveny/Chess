@@ -1,4 +1,5 @@
 class Piece
+	attr_reader :colour # Allows the colour of the piece to be accessed from all of the 
 	def initialize(position, colour)
 		@colour = colour
 		@start_position = position	
@@ -9,13 +10,13 @@ class Piece
 	
 	end
 
-	def enemy_square?(move)
+	def enemy_square?(move, coord)
 	end
 
-	def empty_square?(move)
+	def empty_square?(move, coord)
 	end
 
-	def team_square?(move)
+	def team_square?(move, coord)
 	end
 
 
