@@ -11,6 +11,3 @@ class Pawn < Piece
 	end
 		
 end
-
-test_pawn = Pawn.new("e7", "W")
-puts test_pawn.colour

@@ -78,6 +78,16 @@ class Board
 		puts "   a  b  c  d  e  f  g  h"
 	end
 
+	def get_piece(coord)
+		coord_symb = coord.to_sym # Convert to a symbol so that we can access the current_square
+		return @board[coord_symb] # Returns the object at the square input with the coordinates
+	end
+		
+	def place_piece(target, piece)
+		target_symb = target.to_sym # Convert the input target coordinates to a symbol
+		@board[target_symb] = piece # Move the current piece object to the place on the board
+	end
+
 end
 
 class Blank
@@ -87,6 +97,3 @@ class Blank
 		"[ ]"
 	end
 end
-
-new_board = Board.new
-new_board.display_board
