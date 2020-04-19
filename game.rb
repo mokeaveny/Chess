@@ -1,6 +1,7 @@
 require_relative "./board.rb"
 
 class Player
+	attr_reader :colour
 	def initialize(colour)
 		@colour = colour
 	end
@@ -19,9 +20,9 @@ class Game
 		@board.display_board
 		puts
 		print "#{@current_player_name} Select a piece by inputting the coordinates of the piece: "
-		coordinates = gets.chomp 
+		coordinates = gets.chomp
 		current_piece = @board.get_piece(coordinates)
-		puts current_piece.display
+		puts current_piece.determine_moves(coordinates, @board)
 		puts "Where would you like to move the piece?"
 		target = gets.chomp
 		@board.place_piece(target, current_piece)

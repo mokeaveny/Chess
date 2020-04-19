@@ -19,7 +19,7 @@ class Board
 							:d7 => Pawn.new("d7", "W"), :e7 => Pawn.new("e7", "W"), :f7 => Pawn.new("f7", "W"),
 							:g7 => Pawn.new("g7", "W"), :h7 => Pawn.new("h7", "W"),
 
-							:a6 => blank, :b6 => blank, :c6 => blank, :d6 => blank, :e6 => blank, :f6 => blank,
+							:a6 => Pawn.new("a6", "B"), :b6 => blank, :c6 => Pawn.new("c6", "B"), :d6 => blank, :e6 => blank, :f6 => blank,
 						  :g6 => blank, :h6 => blank,
 
 							:a5 => blank, :b5 => blank, :c5 => blank, :d5 => blank, :e5 => blank, :f5 => blank,
