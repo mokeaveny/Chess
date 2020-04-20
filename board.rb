@@ -19,13 +19,13 @@ class Board
 							:d7 => Pawn.new("d7", "W"), :e7 => Pawn.new("e7", "W"), :f7 => Pawn.new("f7", "W"),
 							:g7 => Pawn.new("g7", "W"), :h7 => Pawn.new("h7", "W"),
 
-							:a6 => blank, :b6 => blank, :c6 => blank, :d6 => blank, :e6 => blank, :f6 => blank,
+							:a6 => blank, :b6 => blank, :c6 => Knight.new("c6", "B"), :d6 => Knight.new("c6", "B"), :e6 => Knight.new("c6", "B"), :f6 => blank,
 						  :g6 => blank, :h6 => blank,
 
-							:a5 => Knight.new("a5", "B"), :b5 => blank, :c5 => Knight.new("c5", "B"), :d5 => blank, :e5 => blank, :f5 => blank,
+							:a5 => Knight.new("a5", "B"), :b5 => blank, :c5 => Knight.new("c5", "B"), :d5 => King.new("d5","B"), :e5 => Knight.new("e5", "B"), :f5 => blank,
 						  :g5 => blank, :h5 => blank,
 
-							:a4 => blank, :b4 => blank, :c4 => blank, :d4 => blank, :e4 => blank, :f4 => blank,
+							:a4 => blank, :b4 => blank, :c4 => Knight.new("c4", "B"), :d4 => Knight.new("d4", "B"), :e4 => Knight.new("e4", "B"), :f4 => blank,
 						  :g4 => blank, :h4 => blank,
 
 							:a3 => blank, :b3 => blank, :c3 => blank, :d3 => blank, :e3 => blank, :f3 => blank,

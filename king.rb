@@ -66,10 +66,25 @@ class King < Piece
 		if check_letter_pos(letter_index, 1) == true && check_number_pos(number, -1) == true
 			bottom_right = "#{@alphabet[letter_index + 1]}#{number - 1}"
 			@possible_moves.append(bottom_right)
-		end		
+		end	
 		
+		number_of_moves = @possible_moves.length
+		counter = 0
+		while counter < number_of_moves
+			move = @possible_moves[counter]
+			move = move.to_sym # Convert to a symbol as it's stored as a symbol in the hash
+			current_piece = current_board.get_piece(move)
+			
+			if current_piece.colour == @colour
+				move = move.to_s # Convert to string as it's stored as a string in the array
+				@possible_moves.delete(move) # Fix this, got an error
+				number_of_moves -= 1
+			else
+				counter += 1
+			end
+		end
 
-
+	puts @possible_moves
 	end
 
 	def check_letter_pos(position, move)
