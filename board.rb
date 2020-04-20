@@ -22,7 +22,7 @@ class Board
 							:a6 => blank, :b6 => blank, :c6 => blank, :d6 => blank, :e6 => blank, :f6 => blank,
 						  :g6 => blank, :h6 => blank,
 
-							:a5 => Knight.new("a5", "B"), :b5 => blank, :c5 => Knight.new("c5", "B"), :d5 => Bishop.new("d5", "B"), :e5 => blank, :f5 => blank,
+							:a5 => Knight.new("a5", "B"), :b5 => blank, :c5 => Knight.new("c5", "B"), :d5 => Queen.new("d5", "B"), :e5 => blank, :f5 => blank,
 						  :g5 => blank, :h5 => blank,
 
 							:a4 => blank, :b4 => blank, :c4 => blank, :d4 => blank, :e4 => blank, :f4 => blank,
