@@ -85,6 +85,70 @@ class Bishop < Piece
 				end
 			end
 		end
+
+		#Determines lower_left
+		ll_number = number # Counter that stores the current number
+		ll_letter = letter # Counter that stores the current letter
+		ll_letter_index = letter_index
+		while lower_left == false
+			if ll_number == 1
+				lower_left = true
+			
+			elsif ll_letter == "a" # Furthest right letter is h
+				lower_left = true
+			
+			else
+				ll_number -= 1
+				ll_letter_index -= 1 # The letters move down the alphabet
+				ll_letter = @alphabet[ll_letter_index]
+				coordinate = "#{ll_letter}#{ll_number}"
+				coordinate = coordinate.to_sym
+				current_piece = current_board.get_piece(coordinate)
+				
+				if current_piece.colour == @colour
+					lower_left = true
+				
+				elsif current_piece.colour == nil
+					@possible_moves.append("#{ll_letter}#{ll_number}")
+				
+				else
+					@possible_moves.append("#{ll_letter}#{ll_number}")
+					lower_left = true
+				end
+			end
+		end
+
+		#Determines lower_left
+		lr_number = number # Counter that stores the current number
+		lr_letter = letter # Counter that stores the current letter
+		lr_letter_index = letter_index
+		while lower_right == false
+			if lr_number == 1
+				lower_right = true
+			
+			elsif lr_letter == "h" # Furthest right letter is h
+				lower_right = true
+			
+			else
+				lr_number -= 1
+				lr_letter_index += 1 # The letters move up the alphabet
+				lr_letter = @alphabet[lr_letter_index]
+				coordinate = "#{lr_letter}#{lr_number}"
+				coordinate = coordinate.to_sym
+				current_piece = current_board.get_piece(coordinate)
+				
+				if current_piece.colour == @colour
+					lower_right = true
+				
+				elsif current_piece.colour == nil
+					@possible_moves.append("#{lr_letter}#{lr_number}")
+				
+				else
+					@possible_moves.append("#{lr_letter}#{lr_number}")
+					lower_right = true
+				end
+			end
+		end
 		
 	
 	puts @possible_moves

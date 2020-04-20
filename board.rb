@@ -31,7 +31,7 @@ class Board
 							:a3 => blank, :b3 => blank, :c3 => blank, :d3 => blank, :e3 => blank, :f3 => blank,
 						  :g3 => blank, :h3 => blank,
 
-							:a2 => Pawn.new("a2", "B"), :b2 => Pawn.new("b2", "B"), :c2 => Pawn.new("c2", "B"), 
+							:a2 => blank, :b2 => Pawn.new("b2", "B"), :c2 => Pawn.new("c2", "B"), 
 							:d2 => Pawn.new("d2", "B"), :e2 => Pawn.new("e2", "B"), :f2 => Pawn.new("f2", "B"),
 						  :g2 => Pawn.new("g2", "B"), :h2 => Pawn.new("h2", "B"),						
 
