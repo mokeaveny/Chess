@@ -63,14 +63,19 @@ class Knight < Piece
 		end
 
 		#Iterates over every possible move, if the move is of the same colour as the current piece then remove it as a possible move
-
-		@possible_moves.each do |move|
-			move = move.to_sym # Convert move to a symbol to get piece 
+		number_of_moves = @possible_moves.length
+		counter = 0
+		while counter < number_of_moves
+			move = @possible_moves[counter]
+			move = move.to_sym # Convert to a symbol as it's stored as a symbol in the hash
 			current_piece = current_board.get_piece(move)
 			
 			if current_piece.colour == @colour
-				move = move.to_s
-				@possible_moves.delete(move)
+				move = move.to_s # Convert to string as it's stored as a string in the array
+				@possible_moves.delete(move) # Fix this, got an error
+				number_of_moves -= 1
+			else
+				counter += 1
 			end
 		end
 	
