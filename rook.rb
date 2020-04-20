@@ -35,7 +35,6 @@ class Rook < Piece
 					break
 
 				end
-				
 			end
 		end
 
@@ -58,9 +57,47 @@ class Rook < Piece
 				end
 			end
 		end
-		puts @possible_moves
+
 		if letter != "h"
-			
+			for i in (letter_index + 1)..7 # Goes from the letter to the leftmost letter
+				new_letter = @alphabet[i]
+				coordinate = "#{new_letter}#{number}"
+				coordinate = coordinate. to_sym
+				current_piece = current_board.get_piece(coordinate)
+				
+				if current_piece.colour == @colour
+					break
+				
+				elsif current_piece.colour == nil
+					@possible_moves.append("#{new_letter}#{number}")
+				
+				else
+					@possible_moves.append("#{new_letter}#{number}")
+					break
+				end
+			end
+		end			
+
+		if letter != "a"
+			for i in (letter_index - 1).downto(0) # Goes from the letter to the leftmost letter
+				new_letter = @alphabet[i]
+				coordinate = "#{new_letter}#{number}"
+				coordinate = coordinate. to_sym
+				current_piece = current_board.get_piece(coordinate)
+				
+				if current_piece.colour == @colour
+					break
+				
+				elsif current_piece.colour == nil
+					@possible_moves.append("#{new_letter}#{number}")
+				
+				else
+					@possible_moves.append("#{new_letter}#{number}")
+					break
+				end
+			end
+		end			
+	puts @possible_moves
 	end
 
 end

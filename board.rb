@@ -25,7 +25,7 @@ class Board
 							:a5 => blank, :b5 => blank, :c5 => blank, :d5 => blank, :e5 => blank, :f5 => blank,
 						  :g5 => blank, :h5 => blank,
 
-							:a4 => Rook.new("a4", "W"), :b4 => blank, :c4 => blank, :d4 => blank, :e4 => blank, :f4 => blank,
+							:a4 => Rook.new("a4", "W"), :b4 => blank, :c4 => Rook.new("c4","B"), :d4 => blank, :e4 => blank, :f4 => blank,
 						  :g4 => blank, :h4 => blank,
 
 							:a3 => blank, :b3 => blank, :c3 => blank, :d3 => blank, :e3 => blank, :f3 => blank,
