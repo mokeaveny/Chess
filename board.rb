@@ -11,24 +11,24 @@ class Board
 		
 		blank = Blank.new # Create a blank object. This displays a blank space and has no colour.
 
-		@board = {:a8 => Rook.new("a8", "W"), :b8 => Bishop.new("b8", "W"), :c8 => Knight.new("c8", "W"), 
+		@board = {:a8 => blank, :b8 => Bishop.new("b8", "W"), :c8 => Knight.new("c8", "W"), 
 							:d8 => Queen.new("d8", "W"), :e8 => King.new("e8", "W"), :f8 => Knight.new("f8", "W"),
 						  :g8 => Bishop.new("g8", "W"), :h8 => Rook.new("h8", "W"),
 							
-							:a7 => Pawn.new("a7", "W"),:b7 => Pawn.new("b7", "W"), :c7 => Pawn.new("c7", "W"),
+							:a7 => Rook.new("a7", "W"),:b7 => Pawn.new("b7", "W"), :c7 => Pawn.new("c7", "W"),
 							:d7 => Pawn.new("d7", "W"), :e7 => Pawn.new("e7", "W"), :f7 => Pawn.new("f7", "W"),
 							:g7 => Pawn.new("g7", "W"), :h7 => Pawn.new("h7", "W"),
 
-							:a6 => Pawn.new("a6", "B"), :b6 => blank, :c6 => Pawn.new("c6", "B"), :d6 => blank, :e6 => blank, :f6 => blank,
+							:a6 => blank, :b6 => blank, :c6 => blank, :d6 => blank, :e6 => blank, :f6 => blank,
 						  :g6 => blank, :h6 => blank,
 
 							:a5 => blank, :b5 => blank, :c5 => blank, :d5 => blank, :e5 => blank, :f5 => blank,
 						  :g5 => blank, :h5 => blank,
 
-							:a4 => blank, :b4 => blank, :c4 => blank, :d4 => blank, :e4 => blank, :f4 => blank,
+							:a4 => Rook.new("a4", "W"), :b4 => blank, :c4 => blank, :d4 => blank, :e4 => blank, :f4 => blank,
 						  :g4 => blank, :h4 => blank,
 
-							:a3 => Rook.new("a3", "W"), :b3 => blank, :c3 => Knight.new("c3", "W"), :d3 => blank, :e3 => blank, :f3 => blank,
+							:a3 => blank, :b3 => blank, :c3 => blank, :d3 => blank, :e3 => blank, :f3 => blank,
 						  :g3 => blank, :h3 => blank,
 
 							:a2 => Pawn.new("a2", "B"), :b2 => Pawn.new("b2", "B"), :c2 => Pawn.new("c2", "B"), 

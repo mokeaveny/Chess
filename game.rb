@@ -22,7 +22,7 @@ class Game
 		print "#{@current_player_name} Select a piece by inputting the coordinates of the piece: "
 		coordinates = gets.chomp
 		current_piece = @board.get_piece(coordinates)
-		puts current_piece.determine_moves(coordinates, @board)
+		puts current_piece.determine_moves(coordinates, @board) # determine_moves is a method shared by all game pieces
 		puts "Where would you like to move the piece?"
 		target = gets.chomp
 		@board.place_piece(target, current_piece)
