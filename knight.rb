@@ -62,7 +62,19 @@ class Knight < Piece
 			@possible_moves.append(upper_rightmost)
 		end
 
-		puts @possible_moves
+		#Iterates over every possible move, if the move is of the same colour as the current piece then remove it as a possible move
+
+		@possible_moves.each do |move|
+			move = move.to_sym # Convert move to a symbol to get piece 
+			current_piece = current_board.get_piece(move)
+			
+			if current_piece.colour == @colour
+				move = move.to_s
+				@possible_moves.delete(move)
+			end
+		end
+	
+	puts @possible_moves
 
 	end
 
