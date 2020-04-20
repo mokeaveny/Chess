@@ -11,7 +11,7 @@ class Board
 		
 		blank = Blank.new # Create a blank object. This displays a blank space and has no colour.
 
-		@board = {:a8 => blank, :b8 => Bishop.new("b8", "W"), :c8 => Knight.new("c8", "W"), 
+		@board = {:a8 => Rook.new("a8", "W"), :b8 => Bishop.new("b8", "W"), :c8 => Knight.new("c8", "W"), 
 							:d8 => Queen.new("d8", "W"), :e8 => King.new("e8", "W"), :f8 => Knight.new("f8", "W"),
 						  :g8 => Bishop.new("g8", "W"), :h8 => Rook.new("h8", "W"),
 							
@@ -22,10 +22,10 @@ class Board
 							:a6 => blank, :b6 => blank, :c6 => blank, :d6 => blank, :e6 => blank, :f6 => blank,
 						  :g6 => blank, :h6 => blank,
 
-							:a5 => blank, :b5 => blank, :c5 => blank, :d5 => blank, :e5 => blank, :f5 => blank,
+							:a5 => blank, :b5 => blank, :c5 => blank, :d5 => Bishop.new("d5", "B"), :e5 => blank, :f5 => blank,
 						  :g5 => blank, :h5 => blank,
 
-							:a4 => Rook.new("a4", "W"), :b4 => blank, :c4 => Rook.new("c4","B"), :d4 => blank, :e4 => blank, :f4 => blank,
+							:a4 => blank, :b4 => blank, :c4 => blank, :d4 => blank, :e4 => blank, :f4 => blank,
 						  :g4 => blank, :h4 => blank,
 
 							:a3 => blank, :b3 => blank, :c3 => blank, :d3 => blank, :e3 => blank, :f3 => blank,
