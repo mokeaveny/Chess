@@ -22,7 +22,7 @@ class Board
 							:a6 => blank, :b6 => blank, :c6 => blank, :d6 => blank, :e6 => blank, :f6 => blank,
 						  :g6 => blank, :h6 => blank,
 
-							:a5 => Knight.new("a5", "B"), :b5 => blank, :c5 => Knight.new("c5", "B"), :d5 => Queen.new("d5", "B"), :e5 => blank, :f5 => blank,
+							:a5 => Knight.new("a5", "B"), :b5 => blank, :c5 => Knight.new("c5", "B"), :d5 => blank, :e5 => blank, :f5 => blank,
 						  :g5 => blank, :h5 => blank,
 
 							:a4 => blank, :b4 => blank, :c4 => blank, :d4 => blank, :e4 => blank, :f4 => blank,
@@ -35,7 +35,7 @@ class Board
 							:d2 => Pawn.new("d2", "B"), :e2 => Pawn.new("e2", "B"), :f2 => Pawn.new("f2", "B"),
 						  :g2 => Pawn.new("g2", "B"), :h2 => Pawn.new("h2", "B"),						
 
-							:a1 => Rook.new("a1", "B"), :b1 => Bishop.new("b1", "B"), :c1 => Knight.new("c1", "B"),
+							:a1 => King.new("a1", "B"), :b1 => Bishop.new("b1", "B"), :c1 => Knight.new("c1", "B"),
 							:d1 => Queen.new("d1", "B"), :e1 => King.new("e1", "B"), :f1 => Knight.new("f1", "B"),
 						  :g1 => Bishop.new("g1", "B"), :h1 => Rook.new("h1", "B"),
 						}			
