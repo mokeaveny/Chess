@@ -87,7 +87,7 @@ class Knight < Piece
 			end
 		end
 	
-	puts @possible_moves
+	return @possible_moves
 
 	end
 

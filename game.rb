@@ -28,6 +28,31 @@ class Game
 		end
 	end
 
+	def move_piece(start)
+		move_choice = false
+		while move_choice == false
+			current_piece = @board.get_piece(start)
+			possible_moves = current_piece.determine_moves(start, @board)
+			puts possible_moves
+
+			if possible_moves == []
+				puts "There are no valid moves for this piece, pick another piece!"
+				return false
+			end
+
+			puts "Where would you like to move the piece?"
+			target = gets.chomp
+
+			if possible_moves.include?(target) # If the user chooses a coordinate that is included within the possible_moves then the piece move is valid
+				@board.place_piece(start, target, current_piece) # Moves the piece on the current board
+				return true
+			else
+				puts "That is not a valid move for this piece!"
+			end
+
+		end
+	end
+
 	def play
 		while @won == false
 			@board.display_board
@@ -42,7 +67,9 @@ class Game
 				if @valid_letters.include?(letter) == true && (number > 0 && number < 9) == true
 					current_piece = @board.get_piece(coordinates)
 					if current_piece.colour == @current_player.colour # If the selected piece is the same colour as the current player then it can be moved by them
-						valid_choice = true
+						if move_piece(coordinates) == true						
+							valid_choice = true
+						end
 					else
 						puts "You have selected a coordinate on the board that isn't your piece or it's blank!"
 					end
@@ -50,11 +77,6 @@ class Game
 						puts "That isn't a valid position on the board! Try again!"
 				end
 			end
-			current_piece = @board.get_piece(coordinates) # Selects the piece they want to move from the board
-			puts current_piece.determine_moves(coordinates, @board) # determine_moves is a method shared by all game pieces
-			puts "Where would you like to move the piece?"
-			target = gets.chomp
-			@board.place_piece(coordinates, target, current_piece)
 			change_player
 		end
 	end
