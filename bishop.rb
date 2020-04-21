@@ -160,9 +160,7 @@ class Bishop < Piece
 		end
 		
 	
-	puts @possible_moves
-	end
-
-		
+	return @possible_moves
+	end	
 
 end

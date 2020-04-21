@@ -92,7 +92,7 @@ class King < Piece
 			end
 		end
 
-	puts @possible_moves
+	return @possible_moves
 	end
 
 	def check_letter_pos(position, move)

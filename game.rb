@@ -16,6 +16,8 @@ class Game
 		@current_player_name = "Player 1"
 		@won = false
 		@valid_letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
+		@white_king = @board.get_piece("e8") # Gets the white king object
+		@black_king = @board.get_piece("e1") # Gets the black king object
 	end
 
 	def change_player
@@ -53,6 +55,21 @@ class Game
 		end
 	end
 
+	def king_check(moved_coordinates)
+		enemy_king = nil
+		if @current_player == @player1
+			enemy_king = @black_king
+		
+		elsif @current_player == @player2
+			enemy_king = @white_king
+		end
+
+		piece_to_check = @board.get_piece(moved_coordinates) # Using the moved piece coordinates
+																												 # Check if any of the possible moves are the coordinate of the enemy king
+		moved_piece_moves = piece_to_check.determine_moves(moved_coordinates, @board)
+		
+	end
+
 	def play
 		while @won == false
 			@board.display_board
@@ -67,7 +84,8 @@ class Game
 				if @valid_letters.include?(letter) == true && (number > 0 && number < 9) == true
 					current_piece = @board.get_piece(coordinates)
 					if current_piece.colour == @current_player.colour # If the selected piece is the same colour as the current player then it can be moved by them
-						if move_piece(coordinates) == true						
+						if move_piece(coordinates) == true
+							#Here is where the king will be checked for						
 							valid_choice = true
 						end
 					else
