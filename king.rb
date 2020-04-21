@@ -1,6 +1,7 @@
 require_relative "./piece.rb"
 
 class King < Piece
+	attr_accessor :position
 	def initialize(position, colour)
 		@colour = colour
 		@position = position
@@ -117,5 +118,5 @@ class King < Piece
 
 		end
 	end
-
+			
 end
