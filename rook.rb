@@ -9,7 +9,11 @@ class Rook < Piece
 	end
 
 	def display
-		"[R]"
+		if @colour == "B"
+			"[♖]"
+		elsif @colour == "W"
+			"[♜]"	
+		end
 	end
 
 	def determine_moves(position, current_board)

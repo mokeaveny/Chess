@@ -9,7 +9,11 @@ class Queen < Piece
 	end
 
 	def display
-		"[Q]"
+		if @colour == "B"
+			"[♕]"
+		elsif @colour == "W"
+			"[♛]"
+		end
 	end
 
 	def determine_moves(position, current_board)

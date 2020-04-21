@@ -9,7 +9,11 @@ class King < Piece
 	end
 
 	def display
-		"[K]"
+		if @colour == "B"
+			"[♔]" # Actually the white unicode character. Looks black in terminal
+		elsif @colour == "W"
+			"[♚]" # Actually the black unicode character. Looks white in terminal
+		end	
 	end
 
 

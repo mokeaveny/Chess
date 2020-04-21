@@ -10,7 +10,11 @@ class Pawn < Piece
 	end
 
 	def display
-		"[P]"
+		if @colour == "B"
+			"[♙]"
+		elsif @colour == "W"
+			"[♟]"
+		end
 	end
 
 	def determine_moves(position, current_board)

@@ -9,7 +9,11 @@ class Knight < Piece
 	end
 
 	def display
-		"[H]"
+		if @colour == "B"
+			"[♘]"
+		elsif @colour == "W"
+			"[♞]"
+		end
 	end
 
 	def determine_moves(position, current_board)

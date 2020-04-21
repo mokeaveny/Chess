@@ -15,6 +15,7 @@ class Game
 		@current_player = @player1
 		@current_player_name = "Player 1"
 		@won = false
+		@valid_letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
 	end
 
 	def change_player
@@ -31,8 +32,24 @@ class Game
 		while @won == false
 			@board.display_board
 			puts
-			print "#{@current_player_name} Select a piece by inputting the coordinates of the piece: "
-			coordinates = gets.chomp # Selects the piece they want to move
+			valid_choice = false
+			while valid_choice == false
+				print "#{@current_player_name} Select a piece by inputting the coordinates of the piece: "
+				coordinates = gets.chomp # Selects the piece they want to move
+				letter = coordinates[0]
+				number = coordinates[1]
+				number = number.to_i
+				if @valid_letters.include?(letter) == true && (number > 0 && number < 9) == true
+					current_piece = @board.get_piece(coordinates)
+					if current_piece.colour == @current_player.colour # If the selected piece is the same colour as the current player then it can be moved by them
+						valid_choice = true
+					else
+						puts "You have selected a coordinate on the board that isn't your piece or it's blank!"
+					end
+				else
+						puts "That isn't a valid position on the board! Try again!"
+				end
+			end
 			current_piece = @board.get_piece(coordinates) # Selects the piece they want to move from the board
 			puts current_piece.determine_moves(coordinates, @board) # determine_moves is a method shared by all game pieces
 			puts "Where would you like to move the piece?"
