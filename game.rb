@@ -18,7 +18,7 @@ class Game
 		@valid_letters = ["a", "b", "c", "d", "e", "f", "g", "h"]
 		@white_king = @board.get_piece("e8") # Gets the white king object
 		@black_king = @board.get_piece("e1") # Gets the black king object
-		@current_king = @black_king
+		@enemy_king = @black_king
 	end
 
 	def change_player
@@ -48,12 +48,31 @@ class Game
 
 			if possible_moves.include?(target) # If the user chooses a coordinate that is included within the possible_moves then the piece move is valid
 				@board.place_piece(start, target, current_piece) # Moves the piece on the current board
+				if current_piece.is_a?(King) # If the current piece is a king then update the objects position
+					current_piece.position = target
+				end
+				if current_piece.is_a?(Pawn) # Condition in case it's the first move the pawn has made and therefore it's set to false
+					current_piece.start = false
+				end
 				return true
 			else
 				puts "That is not a valid move for this piece!"
 			end
 
 		end
+	end
+
+	def king_in_check
+		king_moves = @enemy_king.determine_moves(@enemy_king.position, @board) # Gets the possible_moves of the enemy_king
+		puts king_moves
+		friendly_moves = [] # The most recent moved colour's possible moves
+		enemy_moves = [] # The enemy's possible moves
+		@board.board.each do |(position, piece)|
+			if piece.colour == @current_player.colour 
+				friendly_moves.append(piece.determine_moves(position, @board))
+			end
+		end
+		puts friendly_moves
 	end
 
 	def play
@@ -70,9 +89,7 @@ class Game
 				if @valid_letters.include?(letter) == true && (number > 0 && number < 9) == true
 					current_piece = @board.get_piece(coordinates)
 					if current_piece.colour == @current_player.colour # If the selected piece is the same colour as the current player then it can be moved by them
-						if move_piece(coordinates) == true
-							puts current_piece.is_a?(King) # Checks if the object moved is of type king. If it is then position must be changed.
-							#Here is where the king will be checked for						
+						if move_piece(coordinates) == true				
 							valid_choice = true
 						end
 					else
@@ -82,6 +99,7 @@ class Game
 						puts "That isn't a valid position on the board! Try again!"
 				end
 			end
+			king_in_check
 			change_player
 		end
 	end

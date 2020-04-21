@@ -1,6 +1,7 @@
 require_relative "./piece.rb"
 
 class Pawn < Piece
+	attr_accessor :start
 	def initialize(position, colour)
 		@colour = colour
 		@position = position
@@ -41,7 +42,6 @@ class Pawn < Piece
 				compare_piece = current_board.get_piece(coordinate)
 				if compare_piece.colour == nil # If the position two places in front is blank then it is a possible move
 					@possible_moves.append(coordinate)
-					@start = false
 				end
 			end
 
@@ -99,7 +99,6 @@ class Pawn < Piece
 				compare_piece = current_board.get_piece(coordinate)
 				if compare_piece.colour == nil
 					@possible_moves.append(coordinate)
-					@start = false
 				end
 			end
 
