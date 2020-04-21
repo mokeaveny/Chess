@@ -6,7 +6,8 @@ require_relative "./rook.rb"
 require_relative "./bishop.rb"
 
 class Board
-	attr_accessor :board
+	attr_accessor :board # Allows getter and setter methods to be perofmed outside of the class
+
 	def initialize
 		
 		blank = Blank.new # Create a blank object. This displays a blank space and has no colour.
@@ -19,19 +20,19 @@ class Board
 							:d7 => Pawn.new("d7", "W"), :e7 => Pawn.new("e7", "W"), :f7 => Pawn.new("f7", "W"),
 							:g7 => Pawn.new("g7", "W"), :h7 => Pawn.new("h7", "W"),
 
-							:a6 => blank, :b6 => blank, :c6 => Knight.new("c6", "B"), :d6 => Knight.new("c6", "B"), :e6 => Knight.new("c6", "B"), :f6 => blank,
+							:a6 => blank, :b6 => blank, :c6 => blank, :d6 => blank, :e6 => blank, :f6 => blank,
 						  :g6 => blank, :h6 => blank,
 
-							:a5 => Knight.new("a5", "W"), :b5 => blank, :c5 => Knight.new("c5", "B"), :d5 => King.new("d5","B"), :e5 => Knight.new("e5", "B"), :f5 => blank,
+							:a5 => blank, :b5 => blank, :c5 => blank, :d5 => blank, :e5 => blank, :f5 => blank,
 						  :g5 => blank, :h5 => blank,
 
-							:a4 => blank, :b4 => blank, :c4 => Knight.new("c4", "B"), :d4 => Knight.new("d4", "B"), :e4 => Knight.new("e4", "B"), :f4 => blank,
+							:a4 => blank, :b4 => blank, :c4 => blank, :d4 => blank, :e4 => blank, :f4 => blank,
 						  :g4 => blank, :h4 => blank,
 
 							:a3 => blank, :b3 => blank, :c3 => blank, :d3 => blank, :e3 => blank, :f3 => blank,
 						  :g3 => blank, :h3 => blank,
 
-							:a2 => blank, :b2 => Pawn.new("b2", "B"), :c2 => Pawn.new("c2", "B"), 
+							:a2 => Pawn.new("a2", "B"), :b2 => Pawn.new("b2", "B"), :c2 => Pawn.new("c2", "B"), 
 							:d2 => Pawn.new("d2", "B"), :e2 => Pawn.new("e2", "B"), :f2 => Pawn.new("f2", "B"),
 						  :g2 => Pawn.new("g2", "B"), :h2 => Pawn.new("h2", "B"),						
 
@@ -83,9 +84,11 @@ class Board
 		return @board[coord_symb] # Returns the object at the square input with the coordinates
 	end
 		
-	def place_piece(target, piece)
+	def place_piece(original_pos, target, piece)
 		target_symb = target.to_sym # Convert the input target coordinates to a symbol
 		@board[target_symb] = piece # Move the current piece object to the place on the board
+		original_pos = original_pos.to_sym 
+		@board[original_pos] = Blank.new # Sets the original position of the piece to a blank space
 	end
 
 end
