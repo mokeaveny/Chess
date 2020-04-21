@@ -17,19 +17,32 @@ class Pawn < Piece
 		end
 	end
 
+	def clear_moves # Method to clear all of the possible_moves everytime the method is called.
+		@possible_moves = []
+	end
+
 	def determine_moves(position, current_board)
+		clear_moves
 		letter = position[0]
 		the_number = position[1]		
 		the_number = the_number.to_i # Convert it to an integer so that we can increment it
 
 		if @colour == "W" # The coordinates can only decrease by a number, not increase
 			number = the_number - 1
-			@possible_moves.append("#{letter}#{number}")
+			coordinate = "#{letter}#{number}"
+			compare_piece = current_board.get_piece(coordinate)
+			if compare_piece.colour == nil
+				@possible_moves.append(coordinate)
+			end
 			
 			if @start == true # Checks if it's still in its starting position
 				number = the_number - 2
-				@possible_moves.append("#{letter}#{number}")
-				@start = false
+				coordinate = "#{letter}#{number}"
+				compare_piece = current_board.get_piece(coordinate)
+				if compare_piece.colour == nil # If the position two places in front is blank then it is a possible move
+					@possible_moves.append(coordinate)
+					@start = false
+				end
 			end
 
 			if letter == "a" # If the letter is a then it will check whether the bottom right coordinate is a black piece
@@ -43,7 +56,7 @@ class Pawn < Piece
 				end
 
 
-			elsif letter == "h"
+			elsif letter == "h" # If the letter is h then it will check whether the bottom left coordinate is a black
 				number = the_number - 1
 				new_letter = @alphabet[6]
 				coordinate = "#{new_letter}#{number}"	
@@ -72,17 +85,22 @@ class Pawn < Piece
 				end
 			end
 		
-			
-		puts @possible_moves
-
 		elsif @colour == "B"
 			number = the_number + 1
-			@possible_moves.append("#{letter}#{number}")
+			coordinate = "#{letter}#{number}"
+			compare_piece = current_board.get_piece(coordinate)
+			if compare_piece.colour == nil
+				@possible_moves.append(coordinate)
+			end
 			
 			if @start == true # Checks if it's still in its starting position
 				number = the_number + 2
-				@possible_moves.append("#{letter}#{number}")
-				@start = false
+				coordinate = "#{letter}#{number}"
+				compare_piece = current_board.get_piece(coordinate)
+				if compare_piece.colour == nil
+					@possible_moves.append(coordinate)
+					@start = false
+				end
 			end
 
 			if letter == "a" # If the letter is a then it will check whether the bottom right coordinate is a black piece
@@ -123,10 +141,9 @@ class Pawn < Piece
 				if compare_piece2.colour == "W"
 					@possible_moves.append(coordinate2)
 				end
-			end
-		puts @possible_moves
-		end			
-	end
-		
 
+			end
+		end
+	puts @possible_moves
+	end
 end
