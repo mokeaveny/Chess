@@ -16,7 +16,12 @@ class Rook < Piece
 		end
 	end
 
+	def clear_moves
+		@possible_moves = []
+	end
+
 	def determine_moves(position, current_board)
+		clear_moves
 		letter = position[0]
 		letter_index = @alphabet.index(letter)
 		number = position[1]

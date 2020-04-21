@@ -7,7 +7,7 @@ require_relative "./bishop.rb"
 
 class Board
 	attr_accessor :board # Allows getter and setter methods to be perofmed outside of the class
-
+ 
 	def initialize
 		
 		blank = Blank.new # Create a blank object. This displays a blank space and has no colour.

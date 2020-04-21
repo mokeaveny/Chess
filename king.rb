@@ -16,9 +16,13 @@ class King < Piece
 		end	
 	end
 
+	def clear_moves
+		@possible_moves = []
+	end
 
 	# The kings possible moves are a cube, therefore check them all and eliminate those that are out of bounds
 	def determine_moves(position, current_board)
+		clear_moves
 		letter = position[0]
 		letter_index = @alphabet.index(letter)
 		number = position[1]
