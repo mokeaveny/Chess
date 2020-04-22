@@ -19,6 +19,7 @@ class Game
 		@white_king = @board.get_piece("e8") # Gets the white king object
 		@black_king = @board.get_piece("e1") # Gets the black king object
 		@enemy_king = @black_king
+		@check = false
 	end
 
 	def change_player
@@ -89,7 +90,11 @@ class Game
 			if king_moves != [] #Check if the king can make any moves. If the king can make a move then not in checkmate
 				return "CHECK"
 			elsif checkmate == false
-				puts check_mate(current_board)
+				if check_mate(current_board) == false
+					return "CHECK" # If check_mate is false then it means they haven't won and their is a move for them to make to get out of check
+				else
+					return "CHECKMATE" # If check_mate is true then the current player has won
+				end
 			end 			
 		else return "SAFE"
 		end
@@ -106,7 +111,6 @@ class Game
 				  	duplicate_board = current_board.dup # Duplicate the current board so that I can make every enemy piece placement and call check on it to see if the king is still in check
 			 			duplicate_board.place_piece(position, move, piece) # Place the piece on the board
 						current_board.display_board
-						duplicate_board.display_board
 						is_checkmate = king_in_check(duplicate_board, checkmate = true)# Pass in the changed board and see what it returns
 						# Place each piece in each possible location and check whether the king is in check. If the king isn't in check then check_mate is false
 						if is_checkmate == "SAFE"
@@ -118,11 +122,14 @@ class Game
 		end
 		return true # If all of the pieces moved still results in check then return true
 	end
-			
 
 	def play
 		while @won == false
 			@board.display_board
+			if @check == true
+				puts "You are currently in check."
+				@check = false
+			end
 			puts
 			valid_choice = false
 			while valid_choice == false
@@ -144,11 +151,18 @@ class Game
 					puts "That isn't a valid position on the board! Try again!"
 				end
 			end
-			puts king_in_check(@board)
-			change_player
+			check_won = king_in_check(@board)
+			if check_won == "SAFE"
+				change_player
+			elsif check_won == "CHECK"
+				@check = true
+				change_player
+			else
+				@won = true
+				puts "#{@current_player_name} wins! CHECKMATE!"
+			end
 		end
 	end
-
 
 end
 

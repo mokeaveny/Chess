@@ -91,7 +91,7 @@ class Board
 		@board[original_pos] = Blank.new # Sets the original position of the piece to a blank space
 	end
 
-	def initialize_copy(original_board)
+	def initialize_copy(original_board) # Deep copy, when the board is duplicated it means the board objects are also duplicated.
 		@board = original_board.board.dup
 	end
 
