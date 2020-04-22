@@ -23,7 +23,7 @@ class Board
 							:a6 => blank, :b6 => blank, :c6 => blank, :d6 => blank, :e6 => blank, :f6 => blank,
 						  :g6 => blank, :h6 => blank,
 
-							:a5 => blank, :b5 => blank, :c5 => blank, :d5 => blank, :e5 => blank, :f5 => blank,
+							:a5 => blank, :b5 => blank, :c5 => blank, :d5 => blank, :e5 => Rook.new("e5", "W"), :f5 => blank,
 						  :g5 => blank, :h5 => blank,
 
 							:a4 => blank, :b4 => blank, :c4 => blank, :d4 => blank, :e4 => blank, :f4 => blank,
@@ -33,11 +33,11 @@ class Board
 						  :g3 => blank, :h3 => blank,
 
 							:a2 => Pawn.new("a2", "B"), :b2 => Pawn.new("b2", "B"), :c2 => Pawn.new("c2", "B"), 
-							:d2 => Pawn.new("d2", "B"), :e2 => Pawn.new("e2", "B"), :f2 => Pawn.new("f2", "B"),
+							:d2 => Rook.new("d2", "W"), :e2 => blank, :f2 => Pawn.new("f2", "B"),
 						  :g2 => Pawn.new("g2", "B"), :h2 => Pawn.new("h2", "B"),						
 
 							:a1 => Rook.new("a1", "B"), :b1 => Bishop.new("b1", "B"), :c1 => Knight.new("c1", "B"),
-							:d1 => Queen.new("d1", "B"), :e1 => King.new("e1", "B"), :f1 => Knight.new("f1", "B"),
+							:d1 => Queen.new("d1", "W"), :e1 => King.new("e1", "B"), :f1 => Knight.new("f1", "B"),
 						  :g1 => Bishop.new("g1", "B"), :h1 => Rook.new("h1", "B"),
 						}			
 

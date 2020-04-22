@@ -51,23 +51,27 @@ class Game
 
 			if possible_moves.include?(target) # If the user chooses a coordinate that is included within the possible_moves then the piece move is valid
 				@board.place_piece(start, target, current_piece) # Moves the piece on the current board
+
+				if current_piece.is_a?(King) # If the current piece is a king then update the objects position
+					current_piece.position = target
+				end
 			
 				if @check == true # If the current player is in check then make a check to see if the move they have made means they are still in check
 					change_player # Changes player as the check conditions are made assuming the enemy player has just made a move
 					still_in_check = king_in_check(@board) # Checks if the board is currently in check
+					print still_in_check
 					if still_in_check == "SAFE"
 						@check = false
 						change_player # Change back to original player
 					else
 						puts "Can't make this move, you would still be in check!"
 						@board.place_piece(target, start, current_piece) # Put the piece back into the place it was moved from
+						if current_piece.is_a?(King) # If the current piece is a king then update the objects position
+							current_piece.position = target
+						end
 						change_player # Change back to the original player
 						return false
 					end
-				end
-
-				if current_piece.is_a?(King) # If the current piece is a king then update the objects position
-					current_piece.position = target
 				end
 
 				if current_piece.is_a?(Pawn) # Condition in case it's the first move the pawn has made and therefore it's set to false
@@ -103,9 +107,7 @@ class Game
 		end
 
 		if check_moves != [] # Check is true
-			if king_moves != [] #Check if the king can make any moves. If the king can make a move then not in checkmate
-				return "CHECK"
-			elsif checkmate == false
+			if checkmate == false
 				if check_mate(current_board) == false
 					return "CHECK" # If check_mate is false then it means they haven't won and their is a move for them to make to get out of check
 				else
@@ -119,19 +121,14 @@ class Game
 	def check_mate(current_board)
 		current_board.board.each do |(position, piece)| # Iterates over the board and selects every enemy piece
 			if piece.colour != @current_player.colour && piece.colour != nil
-				if piece.is_a?(King)
-					next
-				else
-					current_piece_moves = piece.determine_moves(position, current_board) # Gets all of the current enemy piece's possible positions
-					current_piece_moves.each do |move| # For each move the current piece can make
-				  	duplicate_board = current_board.dup # Duplicate the current board so that I can make every enemy piece placement and call check on it to see if the king is still in check
-			 			duplicate_board.place_piece(position, move, piece) # Place the piece on the board
-						current_board.display_board
-						is_checkmate = king_in_check(duplicate_board, checkmate = true)# Pass in the changed board and see what it returns
-						# Place each piece in each possible location and check whether the king is in check. If the king isn't in check then check_mate is false
-						if is_checkmate == "SAFE"
-							return false
-						end
+				current_piece_moves = piece.determine_moves(position, current_board) # Gets all of the current enemy piece's possible positions
+				current_piece_moves.each do |move| # For each move the current piece can make
+				 	duplicate_board = current_board.dup # Duplicate the current board so that I can make every enemy piece placement and call check on it to see if the king is still in check
+			 		duplicate_board.place_piece(position, move, piece) # Place the piece on the board
+					is_checkmate = king_in_check(duplicate_board, checkmate = true)# Pass in the changed board and see what it returns
+					# Place each piece in each possible location and check whether the king is in check. If the king isn't in check then check_mate is false
+					if is_checkmate == "SAFE"
+						return false
 					end
 				end
 			end
