@@ -91,6 +91,10 @@ class Board
 		@board[original_pos] = Blank.new # Sets the original position of the piece to a blank space
 	end
 
+	def initialize_copy(original_board)
+		@board = original_board.board.dup
+	end
+
 end
 
 class Blank
