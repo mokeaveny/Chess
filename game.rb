@@ -51,9 +51,25 @@ class Game
 
 			if possible_moves.include?(target) # If the user chooses a coordinate that is included within the possible_moves then the piece move is valid
 				@board.place_piece(start, target, current_piece) # Moves the piece on the current board
+			
+				if @check == true # If the current player is in check then make a check to see if the move they have made means they are still in check
+					change_player # Changes player as the check conditions are made assuming the enemy player has just made a move
+					still_in_check = king_in_check(@board) # Checks if the board is currently in check
+					if still_in_check == "SAFE"
+						@check = false
+						change_player # Change back to original player
+					else
+						puts "Can't make this move, you would still be in check!"
+						@board.place_piece(target, start, current_piece) # Put the piece back into the place it was moved from
+						change_player # Change back to the original player
+						return false
+					end
+				end
+
 				if current_piece.is_a?(King) # If the current piece is a king then update the objects position
 					current_piece.position = target
 				end
+
 				if current_piece.is_a?(Pawn) # Condition in case it's the first move the pawn has made and therefore it's set to false
 					current_piece.start = false
 				end
@@ -128,7 +144,6 @@ class Game
 			@board.display_board
 			if @check == true
 				puts "You are currently in check."
-				@check = false
 			end
 			puts
 			valid_choice = false
@@ -138,7 +153,7 @@ class Game
 				letter = coordinates[0]
 				number = coordinates[1]
 				number = number.to_i
-				if @valid_letters.include?(letter) == true && (number > 0 && number < 9) == true
+				if @valid_letters.include?(letter) == true && (number > 0 && number < 9) == true && coordinates.length == 2
 					current_piece = @board.get_piece(coordinates)
 					if current_piece.colour == @current_player.colour # If the selected piece is the same colour as the current player then it can be moved by them
 						if move_piece(coordinates) == true				
