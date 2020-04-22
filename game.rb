@@ -62,18 +62,60 @@ class Game
 		end
 	end
 
-	def king_in_check
-		king_moves = @enemy_king.determine_moves(@enemy_king.position, @board) # Gets the possible_moves of the enemy_king
-		puts king_moves
+	def king_in_check(current_board, checkmate = false)
+		king_moves = @enemy_king.determine_moves(@enemy_king.position, current_board) # Gets the possible_moves of the enemy_king
 		friendly_moves = [] # The most recent moved colour's possible moves
-		enemy_moves = [] # The enemy's possible moves
-		@board.board.each do |(position, piece)|
-			if piece.colour == @current_player.colour 
-				friendly_moves.append(piece.determine_moves(position, @board))
+		check_moves = [] # The possible moves the most recent placed piece has affected the king with
+		current_board.board.each do |(position, piece)|
+			if piece.colour == @current_player.colour
+				piece_moves = piece.determine_moves(position, current_board)
+				piece_moves.each do |move| # Put all of the possible moves of the friendly team into a 1D array
+					friendly_moves.append(move)
+				end
 			end
 		end
-		puts friendly_moves
+
+		friendly_moves.each do |move| # Iterates over all the moves the current player can make
+			if move == @enemy_king.position # If any of the moves are the position of the enemy king then they are in check
+				check_moves.append(move)
+			elsif king_moves.include?(move)
+				king_moves.delete(move)
+			end
+		end
+
+		if check_moves != [] # Check is true
+			if king_moves != [] #Check if the king can make any moves. If the king can make a move then not in checkmate
+				return "CHECK"
+			elsif checkmate == false
+				puts check_mate(current_board)
+			end 			
+		else return "SAFE"
+		end
 	end
+
+	def check_mate(current_board)
+		current_board.board.each do |(position, piece)| # Iterates over the board and selects every 
+			if piece.colour != @current_player.colour && piece.colour != nil
+				if piece.is_a?(King)
+					next
+				else
+					current_piece_moves = piece.determine_moves(position, current_board) # Gets all of the current enemy piece's possible positions
+					current_piece_moves.each do |move| # For each move the current piece can make
+				  	duplicate_board = current_board.clone # Duplicate the current board so that I can make every enemy piece placement and call check on it to see if the king is still in check
+			 			duplicate_board.place_piece(position, move, piece) # Place the piece on the board
+						duplicate_board.display_board
+						is_checkmate = king_in_check(duplicate_board, checkmate = true)# Pass in the changed board and see what it returns
+						# Place each piece in each possible location and check whether the king is in check. If the king isn't in check then check_mate is false
+						if is_checkmate == "SAFE"
+							return false
+						end
+					end
+				end
+			end
+		end
+		return true # If all of the pieces moved still results in check then return true
+	end
+			
 
 	def play
 		while @won == false
@@ -99,7 +141,7 @@ class Game
 						puts "That isn't a valid position on the board! Try again!"
 				end
 			end
-			king_in_check
+			puts king_in_check(@board)
 			change_player
 		end
 	end
