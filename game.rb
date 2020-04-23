@@ -179,61 +179,6 @@ class Game
 		end
 	end
 
-	def save_serial(board, player1, player2, current_player, current_player_name, won, valid_letters, white_king, black_king, enemy_king, check)
-		save_serial = Hash.new
-		save_serial[:board] = board
-		save_serial[:player1] = player1
-		save_serial[:player2] = player2
-		save_serial[:current_player] = current_player
-		save_serial[:current_player_name] = current_player_name
-		save_serial[:won] = won
-		save_serial[:valid_letters] = valid_letters
-		save_serial[:white_king] = white_king
-		save_serial[:black_king] = black_king
-		save_serial[:enemy_king] = enemy_king
-		save_serial[:check] = check
-		return save_serial
-	end
-
-	def save_game
-		save = save_serial(@board, @player1, @player2, @current_player, @current_player_name, @won, @valid_letters, @white_king, @black_king, @enemy_king, @check)
-		File.open("saved game_#{@this_game_number}.txt", "w") do |file|
-			file.write save.to_json
-		end
-	end
-
-	def load_game(game_number)
-		load_serial = JSON.parse(File.read("saved_game_#{game_number}.txt"))
-
-		load_serial.each do |k, v|
-			case k
-				when "board"
-					@board = v
-				when "player1"
-					@player1 = v
-				when "player2"
-					@player2 = v
-				when "current_player"
-					@current_player = v
-				when "current_player_name"
-					@current_player_name = v
-				when "won"
-					@won = v
-				when "valid_letters"
-					@valid_letters = v
-				when "white_king"
-					@white_king = v
-				when "black_king"
-					@black_king = v
-				when "enemy_king"
-					@enemy_king = v
-				when "check"
-					@check = v
-				else
-					puts "There was an error loading your file. Creating new game."	
-			end
-		end
-	end
 
 end
 
