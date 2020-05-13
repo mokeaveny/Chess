@@ -179,7 +179,6 @@ class Game
 		end
 	end
 
-
 end
 
 new_game = Game.new
